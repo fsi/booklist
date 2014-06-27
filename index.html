@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="myBookApp">
+<head>
+    <meta charset="utf-8">
+    <title>books</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One|Play:400,700&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>
+    <script type="text/javascript" src="js/mybookapp.js"></script>
+</head>
+<body ng-controller="bookController">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>To read:</h1>
+            <ul class="list-unstyled">
+                <li ng-repeat="book in incompleteBooks track by $index">
+                    <span ng-hide="book.heart" class="glyphicon glyphicon-minus"></span>
+                    <span ng-show="book.heart" class="glyphicon glyphicon-heart"></span>
+                    <span>{{book.author}}</span>
+                    &mdash;
+                    <span>{{book.title}}</span>
+                    <div class="btn-group right">
+                        <button ng-click="completeBook(book)" class="btn btn-success btn-xs glyphicon glyphicon-ok"></button>
+                        <button ng-click="heartBook(book)" class="btn btn-info btn-xs glyphicon glyphicon-heart"></button>
+                        <button ng-click="removeBook(book)" class="btn btn-danger btn-xs glyphicon glyphicon-remove"></button>
+                    </div>
+                </li>
+                <li>
+                    <form class="form-inline" ng-submit='addBook()'>
+                        <input class="form-control" type='text' ng-model='newBookAuthor' placeholder="Author"></input>
+                        <input class="form-control" type='text' ng-model='newBookTitle' placeholder="Title"></input>
+                        <input class="btn btn-primary" type='submit' value='Add'></input>
+                    </form>
+                </li>
+            </ul>
+            <div>Total of <span>{{books.length}}</span> books</div>
+        </div>
+        <div class="col-md-6">
+            <h1>Completed books:</h1>
+            <ul class="list-unstyled">
+                <li ng-repeat="book in completeBooks track by $index">
+                    <span ng-hide="book.heart" class="glyphicon glyphicon-minus"></span>
+                    <span ng-show="book.heart" class="glyphicon glyphicon-heart"></span>
+                    <span>{{book.author}}</span>
+                    &mdash;
+                    <span>{{book.title}}</span>
+                    <div class="btn-group right">
+                        <button ng-click="uncompleteBook(book)" class="btn btn-success btn-xs glyphicon glyphicon-minus"></button>
+                        <button ng-click="heartBook(book)" class="btn btn-info btn-xs glyphicon glyphicon-heart"></button>
+                        <button ng-click="removeBook(book)" class="btn btn-danger btn-xs glyphicon glyphicon-remove"></button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-12">
+            <h1>Choose a Random Book</h1>
+            <div class="input-group input-group-lg">
+                <span class="input-group-btn">
+                    <button ng-click="chooseRandomBook()" class="btn btn-default">Choose</button>
+                </span>
+                <input ng-model="randomBook" type="text" class="form-control rand"></input>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <h1>About</h1>
+            <p>Made with angularjs and bootstrap.</p>
+            <p>Uses html5 localStorage for storage.</p>
+            <p>by FSi, 2014</p>
+            <p><a href="http://www.gnu.org/licenses/gpl-2.0.txt">GPL v2</a></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

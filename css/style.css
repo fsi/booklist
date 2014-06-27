@@ -1,0 +1,27 @@
+body {
+    font-family: 'Play', Arial, sans-serif;
+}
+
+h1 {
+    font-family: 'Poiret One', Arial, sans-serif;
+    font-size: 20pt;
+    line-height: 28pt;
+}
+li {
+    font-size: 12pt;
+    line-height: 14pt;
+    height: 20pt;
+}
+.rand {
+    font-size: 18px;
+    line-height: 1.33;
+}
+.right {
+    float: right;
+}
+li .right {
+    display: none;
+}
+li:hover .right {
+    display: block;
+}
